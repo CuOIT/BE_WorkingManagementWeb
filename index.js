@@ -1,7 +1,9 @@
 // File: using to run server
 const bodyParser = require("body-parser");
  const viewEngine =require("./config/viewEngine");
-const router =require("./routes");
+const router =require("./routes/index");
+const userRouter =require("./routes/users");
+
 const connectDB =require("./config/connectDB");
 const cors =require('cors');
 const express=require('express')
@@ -16,7 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 viewEngine(app);
 connectDB();
 
-app.use('/',router);
+app.use('/home',router);
+app.use('/user',userRouter);
+
 //cài static file
 app.use(express.static('public')); 
 
