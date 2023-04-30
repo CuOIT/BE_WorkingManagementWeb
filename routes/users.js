@@ -11,4 +11,8 @@ router.get('/', (req, res, next) => {
 });
 router.post('/signup',userController.handleCreateNewUser)
 
+
+
+router.post('/login',userController.handleUserLogin)
+
 module.exports = router;
