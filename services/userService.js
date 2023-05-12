@@ -3,7 +3,6 @@ const db = require("../models/index");
 let checkEmailExist=(email)=>{
     return new Promise(async (resolve,reject)=>{
         try{
-            console.log("email:",email);
             let user=await db.User.findOne({
                 where:{
                     email:email
@@ -29,14 +28,14 @@ let checkEmailExist=(email)=>{
 //         }
 //     })
 // }
-let handleLogin = (phone, password) => {
+let handleLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         let data = {};
-        let checkUserExist = await checkUserPhone(phone);
+        let checkUserExist = await checkEmailExist(email);
         if (checkUserExist) {
             let user = await db.User.findOne({
                 where: {
-                    phone: phone,
+                    email: email,
                 }, raw: true
             });
             if (user) {
@@ -63,25 +62,6 @@ let handleLogin = (phone, password) => {
         resolve(data);
     })
 }
-let checkUserPhone = (phone) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let user = await db.User.findOne({
-                where: {
-                    phone: phone
-                }, raw: true
-            })
-
-            if (user) {
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        } catch (error) {
-            reject(error);
-        }
-    })
-}
 let createNewUSer = (data) => {
     console.log("Data:",data);
     return new Promise(async (resolve, reject) => {
@@ -92,7 +72,7 @@ let createNewUSer = (data) => {
                     message: "Missing required parameters: email"
                 })
             }
-
+            
             if (data.user_name === null || data.user_name === "") {
                 resolve({
                     code: 2,

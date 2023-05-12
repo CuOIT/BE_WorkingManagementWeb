@@ -1,4 +1,6 @@
 const userService =require("../services/userService");
+const jwt=require("jsonwebtoken");
+
 let handleCreateNewUser = async (req, res) => {
     console.log("body",req.body);
     let msg = await userService.createNewUSer(req.body);
@@ -7,20 +9,22 @@ let handleCreateNewUser = async (req, res) => {
     )
 }
 let handleUserLogin = async (req, res) => {
-    let phone = req.body.phone;
+    console.log(req.body)
+    let email = req.body.email;
     let password = req.body.password;
-    if (!phone || !password) {
+    if (!email || !password) {
         return res.status(500).json({
             code: 1,
             message: 'Missing required parameters'
         })
     }
-
-    let userData = await userService.handleLogin(phone, password);
+    const accessToken = jwt.sign({email},process.env.SECRET,{expiresIn:'10m'});
+    let userData = await userService.handleLogin(email, password);
     return res.status(200).json({
         code: userData.code,
         message: userData.message,
-        user: userData.user ? userData.user : {}
+        user: userData.user ? userData.user : {},
+        accessToken,
     })
 }
 module.exports = {
