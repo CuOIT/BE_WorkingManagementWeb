@@ -5,3 +5,30 @@ Content-Type: application/json
     "email":"cuong@gmail.com",
     "password":"123"
 }
+
+### 
+
+POST http://localhost:8080/api/workspace/newWorkspace
+Content-Type: application/json
+
+{
+    "user_id":"1",
+    "name":"Hello Kitty"
+}      
+
+###
+
+GET http://localhost:8080/api/workspace/getAllWorkspaceByUserId/1
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/api/workspace/deleteWorkspace/1?name=Hello Kitty
+
+### 
+PUT http://localhost:8080/api/workspace/renameWorkspace/1
+Content-Type: application/json
+
+{
+    "oldName":"Truong DH BK",
+    "newName":"HUSTer"
+}

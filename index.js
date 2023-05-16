@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
  const viewEngine =require("./config/viewEngine");
 const router =require("./routes/index");
 const userRouter =require("./routes/users");
+const workspaceRouter =require("./routes/workspace");
+
 
 const connectDB =require("./config/connectDB");
 const cors =require('cors');
@@ -33,6 +35,8 @@ connectDB();
 
 app.use('/api',router);
 app.use('/api/user',userRouter);
+app.use('/api/workspace',workspaceRouter);
+
 
 //cài static file
 app.use(express.static('public')); 

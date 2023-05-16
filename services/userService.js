@@ -29,6 +29,7 @@ let checkEmailExist=(email)=>{
 //     })
 // }
 let handleLogin = (email, password) => {
+    console.log({db})
     return new Promise(async (resolve, reject) => {
         let data = {};
         let checkUserExist = await checkEmailExist(email);
