@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Workspace.init({
+<<<<<<< HEAD:src/models/workspace.js
           id: {
+=======
+        id: {
+>>>>>>> origin/Chung:models/workspace.js
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,

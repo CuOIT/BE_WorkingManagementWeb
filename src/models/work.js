@@ -4,9 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     class Work extends Model {
 
         static associate(models){
+<<<<<<< HEAD:src/models/work.js
           Work.belongsTo(models.Workspace,{
             foreignKey:'workspace_id'
           })
+=======
+            Work.belongsTo(models.Workspace)
+>>>>>>> origin/Chung:models/work.js
         }
     };
 
@@ -24,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
           },
+<<<<<<< HEAD:src/models/work.js
           completed: {
+=======
+          isDone: {
+>>>>>>> origin/Chung:models/work.js
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,
