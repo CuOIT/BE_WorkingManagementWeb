@@ -1,0 +1,22 @@
+POST http://localhost:8080/api/user/login
+Content-Type: application/json
+
+{
+    "email":"cuong@gmail.com",
+    "password":"123"
+}
+
+### 
+
+POST http://localhost:8080/api/user/signup
+Content-Type: application/json
+
+{
+    "email":"cuong@gmail.com",
+    "password":"123",
+    "last_name":"Ngo",
+    "first_name":"Cuong",
+    "user_name":"CuO",
+    "phone":"0366721011",
+    "birthday":"07-08-2002"
+}

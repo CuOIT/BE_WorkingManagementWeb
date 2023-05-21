@@ -1,0 +1,27 @@
+
+POST http://localhost:8080/api/workspace
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjo1MSwiaWF0IjoxNjg0NjY4MDk1LCJleHAiOjE2ODQ2Njg2OTV9.bNVAuRlcwPs3xM6EAhaCyAYk912PE2pED1Q7oxsuz44
+
+{
+    "user_id":"51",
+    "name":"Hoe"
+}      
+
+###
+
+GET http://localhost:8080/api/workspace?user_id=1
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/api/workspace/10
+
+### 
+PUT http://localhost:8080/api/workspace/1
+Content-Type: application/json
+
+{
+    "name":"Home"
+}
+
+###
