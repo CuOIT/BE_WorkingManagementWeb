@@ -26,9 +26,5 @@ module.exports=(sequelize,DataTypes)=>{
 
     )
     return ProjectMember;
-<<<<<<< HEAD:src/models/project_member.js
 }
 
-=======
-}
->>>>>>> origin/Chung:models/project_member.js

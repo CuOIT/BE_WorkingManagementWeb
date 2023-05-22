@@ -38,16 +38,11 @@ module.exports= (sequelize,DataTypes)=>{
               max: 4,
             },
           },
-<<<<<<< HEAD:src/models/todo.js
           completed: {
-=======
-          isDone: {
->>>>>>> origin/Chung:models/todo.js
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,
           },
-<<<<<<< HEAD:src/models/todo.js
           date:{
             type: DataTypes.DATEONLY,
             allowNull: false,
@@ -60,17 +55,6 @@ module.exports= (sequelize,DataTypes)=>{
                 key:'user_id'
             }
         }}, {
-=======
-          todolist_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references:{
-                model:'ToDoList',
-                key:'id'
-            }
-          },
-        }, {
->>>>>>> origin/Chung:models/todo.js
           sequelize,
           modelName: 'ToDo',
           tableName: 'ToDos',

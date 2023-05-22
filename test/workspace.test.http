@@ -1,11 +1,11 @@
 
 POST http://localhost:8080/api/workspace
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjo1MSwiaWF0IjoxNjg0NjY4MDk1LCJleHAiOjE2ODQ2Njg2OTV9.bNVAuRlcwPs3xM6EAhaCyAYk912PE2pED1Q7oxsuz44
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjAyNjksImV4cCI6MTY4NDcyMDg2OX0.-zWqVpiCEnFsKgujn3iJXtGmyoA5cnKGsfSr0XKx2dc
 
 {
-    "user_id":"51",
-    "name":"Hoe"
+    "user_id":"1",
+    "name":"Hoeee"
 }      
 
 ###
