@@ -1,0 +1,17 @@
+PUT http://localhost:8080/api/project/authorize
+Content-Type: application/json
+
+{
+    "admin_id":2,
+    "member_id":1,
+    "project_id":1
+}
+###
+
+DELETE http://localhost:8080/api/project/leave-project
+Content-Type: application/json
+
+{
+    "project_id":1,
+    "member_id":3
+}

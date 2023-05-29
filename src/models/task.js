@@ -7,7 +7,7 @@ module.exports=(sequelize,DataTypes )=>{
             foreignKey: 'id'
           });
           Task.belongsTo(models.User, {
-            foreignKey:  'user_id'
+            foreignKey:  'assigned_to'
           });
         }
       }

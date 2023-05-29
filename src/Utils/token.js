@@ -1,3 +1,4 @@
+const { log } = require('common');
 const jwt = require('jsonwebtoken')
 
 const generateAccessToken=(data)=>{
@@ -22,5 +23,6 @@ const verifyRefreshToken=(token)=>{
             resolve(data);
         })})
 }
+
 
 module.exports={generateAccessToken,generateRefreshToken,verifyAccessToken,verifyRefreshToken}
