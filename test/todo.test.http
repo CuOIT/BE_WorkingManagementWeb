@@ -1,0 +1,37 @@
+POST http://localhost:8080/api/to-do
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
+
+{
+    "user_id":"1",
+    "name":"test1",
+    "start_time":"00.00.00",
+    "end_time":"23.59.59",
+    "date":"2023-05-22",
+    "level":3,
+    "isDone":0
+}      
+###
+
+PUT http://localhost:8080/api/to-do/2
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
+
+{
+    "name":"Have",
+    "start_time":"00:00:00",
+    "end_time":"23:59:59",
+    "date":"2023-05-22",
+    "level":2,
+    "isDone":1
+}
+
+###
+DELETE http://localhost:8080/api/to-do/2
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
+
+###
+GET http://localhost:8080/api/to-do?user_id=1&date=2023-05-22
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4

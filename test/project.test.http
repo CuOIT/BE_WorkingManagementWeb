@@ -1,3 +1,4 @@
+###authoradmintomember
 PUT http://localhost:8080/api/project/authorize
 Content-Type: application/json
 
@@ -6,7 +7,7 @@ Content-Type: application/json
     "member_id":1,
     "project_id":1
 }
-###
+###leaveproject
 
 DELETE http://localhost:8080/api/project/leave-project
 Content-Type: application/json
@@ -14,3 +15,43 @@ Content-Type: application/json
     "project_id":1,
     "member_id":3
 }
+
+###create-project
+POST http://localhost:8080/api/project
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+
+{
+    "name":"Have",
+    "start_date":"2023-05-22",
+    "end_date":"2023-06-01",
+    "description":"helllloo",
+    "status":"Pending",
+    "user_id":1
+}
+
+###getallproject
+
+GET http://localhost:8080/api/project?user_id=1
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+
+###update-project
+
+PUT http://localhost:8080/api/project/7
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzY1MjgsImV4cCI6MTY4NTM3NzEyOH0.ndDoNznd_q7iZ8IMZMaDD4hPmfxa18W58CjL5aOozWM
+
+{
+    "name":"haha",
+    "start_date":"2023-05-23",
+    "end_date":"2023-06-02",
+    "description":"xinchaoooo",
+    "status":"Accept"
+}
+
+###delete-project
+
+DELETE http://localhost:8080/api/project/7
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODU0NDM0MjgsImV4cCI6MTY4NTQ0NDAyOH0.CW5-3fMYGfDVBmH8mOJg23nVVpyHdyToOSNupQQK2Eo
