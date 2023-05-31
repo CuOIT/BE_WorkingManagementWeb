@@ -10,7 +10,6 @@ Content-Type: application/json
 
 DELETE http://localhost:8080/api/project/leave-project
 Content-Type: application/json
-
 {
     "project_id":1,
     "member_id":3

@@ -12,4 +12,5 @@ addWorkRouter(router);
 addProjectRouter(router);
 addInvitationRouter(router);
 addTaskRouter(router);
+
 module.exports = router;
