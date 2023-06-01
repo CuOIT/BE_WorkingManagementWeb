@@ -43,7 +43,7 @@ Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzY1MjgsImV4cCI6MTY4NTM3NzEyOH0.ndDoNznd_q7iZ8IMZMaDD4hPmfxa18W58CjL5aOozWM
 
 {
-    "name":"haha",
+    "name":"Hehe",
     "start_date":"2023-05-23",
     "end_date":"2023-06-02",
     "description":"xinchaoooo",
@@ -52,6 +52,6 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 
 ###delete-project
 
-DELETE http://localhost:8080/api/project/7
+DELETE http://localhost:8080/api/project/23
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODU0NDM0MjgsImV4cCI6MTY4NTQ0NDAyOH0.CW5-3fMYGfDVBmH8mOJg23nVVpyHdyToOSNupQQK2Eo

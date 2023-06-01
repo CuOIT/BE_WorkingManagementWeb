@@ -16,5 +16,5 @@ PUT http://localhost:8080/api/project/response-invitation/22
  Content-Type: application/json
  
  {
-    "response":"true"   
+    "response":"false"   
  }

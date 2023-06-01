@@ -2,8 +2,25 @@ POST http://localhost:8080/api/work
 Content-Type: application/json
 
 {
-    "name":"Have",
+    "name":"Have a cat ",
     "due_date":"05-04-2002",
     "completed":"false",
     "workspace_id":"1"
 }
+
+### 
+PUT http://localhost:8080/api/work/4
+Content-Type: application/json
+
+{
+    "name":"Have a car",
+    "due_date":"05-04-2002",
+    "completed":"false",
+    "workspace_id":"1"
+}
+ 
+###
+GET http://localhost:8080/api/work?workspace_id=1
+
+###
+DELETE http://localhost:8080/api/work/3
