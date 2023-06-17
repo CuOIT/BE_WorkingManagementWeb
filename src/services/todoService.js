@@ -10,7 +10,7 @@ const db = require("../models/index");
           end_time: data.end_time,
           level: data.level,
           date :data.date,
-          isDone: 0,
+          completed: 0,
           user_id: data.user_id,
         });
   
@@ -47,7 +47,7 @@ const db = require("../models/index");
           task.start_time = data.start_time;
           task.end_time = data.end_time;
           task.level = data.level;
-          task.isDone = data.isDone;
+          task.completed = data.completed;
   
           await task.save();
   

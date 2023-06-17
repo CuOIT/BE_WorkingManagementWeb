@@ -1,3 +1,26 @@
+###authoradmintomember
+PUT http://localhost:8080/api/project/authorize
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+
+{
+    "admin_id":2,
+    "member_id":1,
+    "project_id":1
+}
+
+###leaveproject
+
+DELETE http://localhost:8080/api/project/leave-project
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+
+{
+    "project_id":1,
+    "member_id":3
+}
+
+###create-project
 POST http://localhost:8080/api/project
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
@@ -11,28 +34,55 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
     "user_id":1
 }
 
-###
+###getallproject
 
 GET http://localhost:8080/api/project?user_id=1
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODY5NDcyNTUsImV4cCI6MTY4Njk0Nzg1NX0.SIG-qJeyUqbj_cEjL1FqJUhCG1Twk71XMoMa0fe10W0
 
-###
+###update-project
 
 PUT http://localhost:8080/api/project/7
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzY1MjgsImV4cCI6MTY4NTM3NzEyOH0.ndDoNznd_q7iZ8IMZMaDD4hPmfxa18W58CjL5aOozWM
 
 {
-    "name":"haha",
+    "name":"Hehe",
     "start_date":"2023-05-23",
     "end_date":"2023-06-02",
     "description":"xinchaoooo",
     "status":"Accept"
 }
 
-###
+###delete-project
 
-DELETE http://localhost:8080/api/project/7
+DELETE http://localhost:8080/api/project/9
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODU0NDM0MjgsImV4cCI6MTY4NTQ0NDAyOH0.CW5-3fMYGfDVBmH8mOJg23nVVpyHdyToOSNupQQK2Eo
+
+
+###
+POST http://localhost:8080/api/project/add-member
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
+
+{
+    "project_id":9,
+    "member_id":30
+}
+
+### chưa hoàn thành
+
+DELETE http://localhost:8080/api/project/delete-member
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
+
+{
+    "project_id":900,
+    "member_id":30
+}
+
+###
+GET http://localhost:8080/api/project?project_id=9
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw

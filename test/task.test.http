@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/project/add-task
+Content-Type: application/json
+
+{
+    "name":"Take a break",
+    "description":"Complete in 2 week",
+    "project_id":"8",
+    "assigned_to":"2",
+    "due_date":"2023-11-12",
+    "status":"pending"
+}
+###
+GET http://localhost:8080/api/project/get-tasks?project_id=8
+ 
+
+###
+PUT http://localhost:8080/api/project/update-task/2
+Content-Type: application/json
+
+{
+    "name":"Take a assignment",
+    "description":"Complete in 3 week",
+    "project_id":"2",
+    "assigned_to":"4",
+    "due_date":"2023-11-12",
+    "status":"pending"
+}
+###
+DELETE http://localhost:8080/api/project/delete-task/2

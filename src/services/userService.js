@@ -42,6 +42,7 @@ let createNewUSer = async (data) => {
             if (check === true) {
                 console.log(check);
                 return({
+                    status: 400,
                     success:"false",
                     message: 'Email has been used'
                 })
@@ -57,6 +58,7 @@ let createNewUSer = async (data) => {
                     birthday: data.birthday,
                 })
                 return({
+                    status:201,
                     success:"true",
                     message: "Successfully created"
                 });
@@ -75,6 +77,7 @@ let deleteUser = (id) => {
                     where: { user_id: id }
                 })
                 resolve({
+                    status: 204,
                     success:"true",
                     message: "Successfully deleted"
                 })

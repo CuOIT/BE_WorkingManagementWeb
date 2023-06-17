@@ -1,12 +1,12 @@
 {
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "web",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "logging": false,
-    "raw": true,
-    "timezone": "+07:00"
-  }
+    "development": {
+        "username": "root",
+        "password": null,
+        "database": "web",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "logging": true,
+        "raw": true,
+        "timezone": "+07:00"
+    }
 }
