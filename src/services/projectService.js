@@ -137,54 +137,29 @@ const createProject = (data) => {
     });
 };
 
-const getProjectById = (member_id) => {
+const getProjectById = (user_id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            // const projects = await db.ProjectMember.findAll({
-            //     where: {
-            //         member_id: user_id,
-            //     },
-            // });
-
-            // if (projects.length > 0) {
-            //     resolve({
-            //         success: "true",
-            //         message: "Successfully retrieved projects",
-            //         data: projects,
-            //     });
-            // } else {
-            //     resolve({
-            //         success: "false",
-            //         message: "No projects found",
-            //     });
-            // }
-            db.sequelize
-                .query(
-                    "SELECT * FROM projects, projectmembers WHERE projects.id = projectmembers.project_id AND projectmembers.member_id = :member_id",
-                    {
-                        type: QueryTypes.SELECT,
-                        replacements: { member_id },
-                    }
-                )
-                .then((results) => {
-                    resolve({
-                        success: "true",
-                        message: "Successfully",
-                        data: results,
-                    }); // Array of results matching the condition
-                })
-                .catch((error) => {
-                    reject({
-                        success: "false",
-                        messsage: "Error occured",
-                    });
-                });
-        } catch (error) {
-            console.log({ error });
-            reject({
-                success: "false",
-                messsage: "Error occured",
+            const projects = await db.ProjectMember.findAll({
+                where: {
+                    member_id: user_id,
+                },
             });
+
+            if (projects.length > 0) {
+                resolve({
+                    success: "true",
+                    message: "Successfully retrieved projects",
+                    data: projects,
+                });
+            } else {
+                resolve({
+                    success: "false",
+                    message: "No projects found",
+                });
+            }
+        } catch (error) {
+            reject(error);
         }
     });
 };
@@ -199,12 +174,14 @@ const updateProjectById = (data) => {
             });
 
             if (!project) {
-                resolve({
-                    success: "false",
+                reject({
+                    success: false,
                     message: "No project found",
                 });
+                return;
             }
             const updatedProject = await project.update(data);
+
             resolve({
                 success: "true",
                 message: "Successfully updated project",
@@ -221,66 +198,101 @@ const updateProjectById = (data) => {
 const deleteProjectById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            db.ProjectMember.destroy({
+            const project = await db.Project.findOne({
+                where: {
+                    id: id,
+                },
+            });
+
+            if (!project) {
+                resolve({
+                    success: false,
+                    message: "Project not found",
+                });
+            }
+
+            await db.ProjectMember.destroy({
                 where: {
                     project_id: id,
                 },
             });
-            db.Project.destroy({
+
+            await db.Project.destroy({
                 where: {
-                    id,
+                    id: id,
                 },
-            })
-                .then((num) => {
-                    resolve({
-                        success: "true",
-                        message: "Delete successfully",
-                    });
-                })
-                .catch((error) => {
-                    console.log({ error });
-                    reject({
-                        success: "false",
-                        message: "Error occured",
-                    });
-                });
+            });
+
+            resolve({
+                success: true,
+                message: "Successfully deleted project",
+            });
         } catch (error) {
             reject({
-                success: "false",
-                message: "Error occured",
+                success: false,
+                message: "Error occurred",
+                error: error,
             });
         }
     });
 };
 
-const getAllMemberOfProject = (project_id) => {
+const addMember = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            db.sequelize
-                .query(
-                    "SELECT * FROM users, projectmembers WHERE users.user_id = projectmembers.member_id AND projectmembers.project_id = :project_id",
-                    {
-                        type: QueryTypes.SELECT,
-                        replacements: { project_id },
-                    }
-                )
-                .then((results) => {
+            const project = await db.Project.findOne({
+                where: {
+                    id: data.project_id,
+                },
+            });
+
+            if (!project) {
+                resolve({
+                    success: "false",
+                    message: "No project found",
+                });
+            }
+            const user = await db.User.findOne({
+                where: {
+                    user_id: data.member_id,
+                },
+            });
+
+            if (!user) {
+                resolve({
+                    success: "false",
+                    message: "User does not exist",
+                });
+            } else {
+                const existingMember = await db.ProjectMember.findOne({
+                    where: {
+                        project_id: data.project_id,
+                        member_id: data.member_id,
+                    },
+                });
+
+                if (existingMember) {
+                    resolve({
+                        success: "false",
+                        message: "Member already exists in the project",
+                    });
+                } else {
+                    const projectMember = await db.ProjectMember.create({
+                        project_id: data.project_id,
+                        member_id: data.member_id,
+                        role: data.role || "member",
+                    });
                     resolve({
                         success: "true",
-                        message: "Successfully",
-                        data: results,
-                    }); // Array of results matching the condition
-                })
-                .catch((error) => {
-                    reject({
-                        success: "false",
-                        messsage: "Error occured",
+                        message: "Successfully added member to the project",
                     });
-                });
+                }
+            }
         } catch (error) {
             reject({
-                success: "false",
-                messsage: "Error occured",
+                success: false,
+                message: "Failed to add member to the project",
+                error: error,
             });
         }
     });
@@ -288,9 +300,10 @@ const getAllMemberOfProject = (project_id) => {
 
 module.exports = {
     authorizeAdmin,
+    createProject,
+    getProjectById,
+    updateProjectById,
+    deleteProjectById,
     leaveFromProject,
-    createProject: createProject,
-    getProjectById: getProjectById,
-    updateProjectById: updateProjectById,
-    deleteProjectById: deleteProjectById,
+    addMember,
 };

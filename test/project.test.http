@@ -34,7 +34,7 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 
 GET http://localhost:8080/api/project?user_id=1
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODUzNzU0ODMsImV4cCI6MTY4NTM3NjA4M30.F8-1XmkWpsVFePABn-VlyCcqNlZkfzklOGyRMZIL1ew
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODY5NDcyNTUsImV4cCI6MTY4Njk0Nzg1NX0.SIG-qJeyUqbj_cEjL1FqJUhCG1Twk71XMoMa0fe10W0
 
 ###update-project
 
@@ -55,3 +55,30 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 DELETE http://localhost:8080/api/project/23
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODU0NDM0MjgsImV4cCI6MTY4NTQ0NDAyOH0.CW5-3fMYGfDVBmH8mOJg23nVVpyHdyToOSNupQQK2Eo
+
+
+###
+POST http://localhost:8080/api/project/add-member
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
+
+{
+    "project_id":9,
+    "member_id":30
+}
+
+### chưa hoàn thành
+
+DELETE http://localhost:8080/api/project/delete-member
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
+
+{
+    "project_id":900,
+    "member_id":30
+}
+
+###
+GET http://localhost:8080/api/project?project_id=9
+Content-Type: application/json
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw

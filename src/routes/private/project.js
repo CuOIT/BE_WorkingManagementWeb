@@ -8,4 +8,6 @@ module.exports = (router)=>{
     router.get('/project',projectController.handleGetProjectbyId)
     router.put('/project/:id',projectController.handleUpdateProject)
     router.delete('/project/:id',projectController.handleDeleteProject)
+    router.post('/project/add-member',projectController.handleAddMember)
+    router.get('/project',projectController.handleGetUserByProjectId)
 };

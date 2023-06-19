@@ -65,10 +65,7 @@ const updateWorkById = (data) => {
                     name: data.name,
                     id: data.workspace_id,
                 });
-                const workWithName = await findWorkByName(
-                    data.name,
-                    data.workspace_id
-                );
+                const workWithName = await findWorkByName(data.name, data.workspace_id);
                 if (workWithName) {
                     reject({
                         success: "false",

@@ -3,10 +3,7 @@ const db = require("../models/index");
 const createNewWorkspace = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const isExisted = await isExistedWorkspaceOfUserId(
-                data.name,
-                data.user_id
-            );
+            const isExisted = await isExistedWorkspaceOfUserId(data.name, data.user_id);
             if (isExisted)
                 reject({
                     success: "false",
@@ -38,10 +35,7 @@ const renameWorkspace = (data) => {
             });
             if (workspace) {
                 const user_id = workspace.user_id;
-                const isExisted = await isExistedWorkspaceOfUserId(
-                    data.name,
-                    user_id
-                );
+                const isExisted = await isExistedWorkspaceOfUserId(data.name, user_id);
                 if (isExisted)
                     reject({
                         success: "false",
@@ -94,7 +88,6 @@ const deleteWorkspaceById = (id) => {
 
 const findAllWorkspaceByUserId = (user_id) => {
     return new Promise(async (resolve, reject) => {
-        console.log({ user_id });
         try {
             const workspaceList = await db.Workspace.findAll({
                 where: { user_id },
@@ -105,7 +98,6 @@ const findAllWorkspaceByUserId = (user_id) => {
                 data: workspaceList,
             });
         } catch (error) {
-            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",

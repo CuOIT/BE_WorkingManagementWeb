@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/project/task/comment
+Content-Type: application/json
+ 
+ {
+    "task_id":3,
+    "comment":"tesst",
+    "user_id":2
+ }
+
+###
+
+DELETE http://localhost:8080/api/project/task/delete-comment/1
+
+
+###
+GET http://localhost:8080/api/project/task/comments?task_id=3

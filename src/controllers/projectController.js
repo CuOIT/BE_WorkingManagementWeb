@@ -48,9 +48,16 @@ let handleDeleteProject = async (req, res) => {
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };
+
+let handleAddMember = async (req, res) => {
+    projectService
+        .addMember(req.body)
+        .then((result) => res.status(200).json(result))
+        .catch((error) => res.status(500).json(error));
+};
 let handleGetAllMemberOfProject = async (req, res) => {
     projectService
-        .getAllMemberOfProject(req.query.project_id)
+        .getUserByProjectId(req.params.project_id)
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };
@@ -62,5 +69,6 @@ module.exports = {
     handleGetProjectbyId,
     handleUpdateProject,
     handleDeleteProject,
+    handleAddMember,
     handleGetAllMemberOfProject,
 };
