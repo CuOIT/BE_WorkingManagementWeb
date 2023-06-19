@@ -21,6 +21,7 @@ const createNewWork = async (data) => {
                 resolve({
                     success: "true",
                     message: "Work is created successfully",
+                    data: work,
                 });
             } else {
                 reject({

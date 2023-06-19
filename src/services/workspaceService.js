@@ -19,6 +19,7 @@ const createNewWorkspace = (data) => {
             resolve({
                 success: "true",
                 message: "Create workspace successfully",
+                data: workspace,
             });
         } catch (error) {
             reject({
@@ -93,6 +94,7 @@ const deleteWorkspaceById = (id) => {
 
 const findAllWorkspaceByUserId = (user_id) => {
     return new Promise(async (resolve, reject) => {
+        console.log({ user_id });
         try {
             const workspaceList = await db.Workspace.findAll({
                 where: { user_id },
@@ -103,6 +105,7 @@ const findAllWorkspaceByUserId = (user_id) => {
                 data: workspaceList,
             });
         } catch (error) {
+            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",

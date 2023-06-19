@@ -48,12 +48,19 @@ let handleDeleteProject = async (req, res) => {
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };
+let handleGetAllMemberOfProject = async (req, res) => {
+    projectService
+        .getAllMemberOfProject(req.query.project_id)
+        .then((result) => res.status(200).json(result))
+        .catch((error) => res.status(500).json(error));
+};
 
 module.exports = {
     handleAuthorizeAdmin,
     handleLeaveFromProject,
-    handleCretateProject: handleCretateProject,
-    handleGetProjectbyId: handleGetProjectbyId,
-    handleUpdateProject: handleUpdateProject,
-    handleDeleteProject: handleDeleteProject,
+    handleCretateProject,
+    handleGetProjectbyId,
+    handleUpdateProject,
+    handleDeleteProject,
+    handleGetAllMemberOfProject,
 };

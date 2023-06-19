@@ -4,17 +4,41 @@ const getAllInvitation = (user_id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const invitations = await db.Invitation.findAll({
+                attributes: ["id"],
+                include: [
+                    {
+                        model: db.Project,
+                        attributes: [["name", "project_name"]],
+
+                        as: "project",
+                    },
+                    {
+                        model: db.User,
+                        attributes: ["user_name"],
+                        as: "inviterUser",
+                    },
+                ],
                 where: {
                     receiver: user_id,
                 },
             });
+            const shortInvitations = invitations.map((item) => {
+                const newItem = {
+                    id: item.id,
+                    project_name: item.project.dataValues.project_name,
+                    inviter: item.inviterUser.user_name,
+                };
+                console.log(item.project.dataValues.project_name);
+                return newItem;
+            });
             resolve({
                 success: "true",
                 message: "Successfully",
-                data: { invitations },
+                data: { shortInvitations },
             });
         } catch (error) {
-            resolve({
+            console.log({ error });
+            reject({
                 success: "false",
                 message: "Error occured",
             });
@@ -35,6 +59,7 @@ const addInvitation = (data) => {
                 resolve({
                     success: "true",
                     message: "Add invitation successfully",
+                    data: invitation,
                 });
             } else {
                 reject({

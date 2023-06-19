@@ -27,7 +27,7 @@ const handleDeleteWorkspace = (req, res) => {
 
 const handleGetAllWorkspaceByUserId = async (req, res) => {
     workspaceService
-        .findAllWorkspaceByUserId(req.params.user_id)
+        .findAllWorkspaceByUserId(req.query.user_id)
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };

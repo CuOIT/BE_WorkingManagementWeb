@@ -20,3 +20,11 @@ Content-Type: application/json
     "phone":"0366721011",
     "birthday":"07-08-2002"
 }
+
+### 
+POST http://localhost:8080/api/user/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MSwiaWF0IjoxNjg2ODk1Mjg5LCJleHAiOjE2ODk0ODcyODl9.p4REKacryJd42Pqg8dVjSzodi2sypITfnVBeT8auOU8"
+}

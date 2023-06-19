@@ -162,7 +162,6 @@ const getProjectById = (member_id) => {
                 .query(
                     "SELECT * FROM projects, projectmembers WHERE projects.id = projectmembers.project_id AND projectmembers.member_id = :member_id",
                     {
-                        logging: console.log,
                         type: QueryTypes.SELECT,
                         replacements: { member_id },
                     }
@@ -249,6 +248,39 @@ const deleteProjectById = (id) => {
             reject({
                 success: "false",
                 message: "Error occured",
+            });
+        }
+    });
+};
+
+const getAllMemberOfProject = (project_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            db.sequelize
+                .query(
+                    "SELECT * FROM users, projectmembers WHERE users.user_id = projectmembers.member_id AND projectmembers.project_id = :project_id",
+                    {
+                        type: QueryTypes.SELECT,
+                        replacements: { project_id },
+                    }
+                )
+                .then((results) => {
+                    resolve({
+                        success: "true",
+                        message: "Successfully",
+                        data: results,
+                    }); // Array of results matching the condition
+                })
+                .catch((error) => {
+                    reject({
+                        success: "false",
+                        messsage: "Error occured",
+                    });
+                });
+        } catch (error) {
+            reject({
+                success: "false",
+                messsage: "Error occured",
             });
         }
     });

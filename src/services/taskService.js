@@ -19,6 +19,7 @@ const addTask = (data) => {
             resolve({
                 success: "true",
                 message: "Create task successfully",
+                data: task,
             });
         } catch (error) {
             reject({

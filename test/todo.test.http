@@ -1,7 +1,6 @@
 POST http://localhost:8080/api/to-do
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
-
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MSwiaWF0IjoxNjg3MDE1MDEwLCJleHAiOjE2ODcwMTU2MTB9.ZhgR6TXDTkR-mNZNoV44zetGmxXCckzDX6x-2bEDWUo
 {
     "user_id":"1",
     "name":"test1",
@@ -15,7 +14,7 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 
 PUT http://localhost:8080/api/to-do/201
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MSwiaWF0IjoxNjg3MDE1MDEwLCJleHAiOjE2ODcwMTU2MTB9.ZhgR6TXDTkR-mNZNoV44zetGmxXCckzDX6x-2bEDWUo
 
 {
     "name":"Have",
@@ -34,4 +33,4 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 ###
 GET http://localhost:8080/api/to-do?user_id=1&date=2023-05-22
 Content-Type: application/json
-Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODQ3MjM0OTcsImV4cCI6MTY4NDcyNDA5N30.XDvOIr79dIhQM1VycP1WL3cfg-4qGeNh0KwHh9zQNn4
+Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MSwiaWF0IjoxNjg3MDE1MDEwLCJleHAiOjE2ODcwMTU2MTB9.ZhgR6TXDTkR-mNZNoV44zetGmxXCckzDX6x-2bEDWUo
