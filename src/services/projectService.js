@@ -146,7 +146,7 @@ const getProjectById = (user_id) => {
             //     },
             // });
             const projectList = await db.sequelize.query(
-                `SELECT name as project_name, role,member_id from Projects , ProjectMembers where Projects.id=ProjectMembers.project_id and member_id=:user_id`,
+                `SELECT project_id,name as project_name, role,member_id from Projects , ProjectMembers where Projects.id=ProjectMembers.project_id and member_id=:user_id`,
                 { replacements: { user_id }, type: QueryTypes.SELECT }
             );
             console.log(projectList);

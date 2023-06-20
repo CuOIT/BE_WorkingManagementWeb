@@ -10,7 +10,7 @@ Content-Type: application/json
     "status":"pending"
 }
 ###
-GET http://localhost:8080/api/project/get-tasks?project_id=8
+GET http://localhost:8080/api/project/get-tasks?project_id=2
  
 
 ###
