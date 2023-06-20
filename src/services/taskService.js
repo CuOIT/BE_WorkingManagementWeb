@@ -70,6 +70,12 @@ const getAllTaskOfProject = (project_id) => {
                 where: {
                     project_id,
                 },
+                include: [
+                    {
+                        model: db.User,
+                        attribute: ["user_name"],
+                    },
+                ],
             });
             console.log({ tasks });
             resolve({

@@ -131,7 +131,7 @@ let editUserInfoByPhone = (data) => {
     });
 };
 const findUserByUserName = (user_name) => {
-    return new Promise(async (req, res) => {
+    return new Promise(async (resolve, reject) => {
         try {
             const matches = await db.User.findAll({
                 where: {
