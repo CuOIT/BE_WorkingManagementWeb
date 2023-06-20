@@ -70,19 +70,44 @@ const isExistedWorkspaceOfUserId = async (name, user_id) => {
 };
 const deleteWorkspaceById = (id) => {
     return new Promise(async (resolve, reject) => {
-        db.Workspace.destroy({ where: { id } })
-            .then((result) =>
-                resolve({
-                    success: "true",
-                    message: "Delete workspace successfully",
-                })
+        try {
+            transaction = await db.sequelize.transaction();
+
+            db.Workspace.destroy(
+                { where: { id } },
+                {
+                    transaction,
+                }
             )
-            .catch((error) =>
-                reject({
-                    success: "false",
-                    message: "Error occured",
+                .then(async (result) => {
+                    await db.Work.destroy(
+                        {
+                            where: {
+                                workspace_id: id,
+                            },
+                        },
+                        {
+                            transaction,
+                        }
+                    );
+                    await transaction.commit();
+                    resolve({
+                        success: "true",
+                        message: "Delete workspace successfully",
+                    });
                 })
-            );
+                .catch((error) =>
+                    reject({
+                        success: "false",
+                        message: "Error occured",
+                    })
+                );
+        } catch (error) {
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
+        }
     });
 };
 

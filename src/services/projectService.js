@@ -140,17 +140,21 @@ const createProject = (data) => {
 const getProjectById = (user_id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const projects = await db.ProjectMember.findAll({
-                where: {
-                    member_id: user_id,
-                },
-            });
-
-            if (projects.length > 0) {
+            // const projects = await db.ProjectMember.findAll({
+            //     where: {
+            //         member_id: user_id,
+            //     },
+            // });
+            const projectList = await db.sequelize.query(
+                `SELECT name as project_name, role,member_id from Projects , ProjectMembers where Projects.id=ProjectMembers.project_id and member_id=:user_id`,
+                { replacements: { user_id }, type: QueryTypes.SELECT }
+            );
+            console.log(projectList);
+            if (projectList.length > 0) {
                 resolve({
                     success: "true",
                     message: "Successfully retrieved projects",
-                    data: projects,
+                    data: projectList,
                 });
             } else {
                 resolve({
@@ -159,7 +163,11 @@ const getProjectById = (user_id) => {
                 });
             }
         } catch (error) {
-            reject(error);
+            console.log({ error });
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
         }
     });
 };
@@ -298,6 +306,33 @@ const addMember = (data) => {
     });
 };
 
+const getAllMemberOfProject = (project_id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log(project_id);
+            const members = await db.sequelize.query(
+                `SELECT user_name, role from ProjectMembers, Users WHERE member_id=user_id AND project_id= :project_id`,
+                {
+                    replacements: { project_id },
+                    type: QueryTypes.SELECT,
+                }
+            );
+            resolve({
+                success: "true",
+                message: "Successfully",
+                data: members,
+            });
+        } catch (error) {
+            console.log({ error });
+
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
+        }
+    });
+};
+
 module.exports = {
     authorizeAdmin,
     createProject,
@@ -306,4 +341,5 @@ module.exports = {
     deleteProjectById,
     leaveFromProject,
     addMember,
+    getAllMemberOfProject,
 };

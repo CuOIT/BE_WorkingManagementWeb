@@ -8,5 +8,5 @@ module.exports = (router) => {
     router.put("/project/:id", projectController.handleUpdateProject);
     router.delete("/project/:id", projectController.handleDeleteProject);
     router.post("/project/add-member", projectController.handleAddMember);
-    router.get("/project", projectController.handleGetAllMemberOfProject);
+    router.get("/project/get-member", projectController.handleGetAllMemberOfProject);
 };

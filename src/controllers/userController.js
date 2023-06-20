@@ -76,8 +76,16 @@ let handleUserLogin = async (req, res) => {
         });
     }
 };
+
+const handleFindUserByUserName = (req, res) => {
+    userService
+        .findUserByUserName(req.query.user_name)
+        .then((result) => res.status(200).json(result))
+        .catch((error) => res.status(500).json(error));
+};
 module.exports = {
     handleCreateNewUser,
     handleUserLogin,
     handleRefreshToken,
+    handleFindUserByUserName,
 };

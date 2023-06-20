@@ -57,7 +57,7 @@ let handleAddMember = async (req, res) => {
 };
 let handleGetAllMemberOfProject = async (req, res) => {
     projectService
-        .getUserByProjectId(req.params.project_id)
+        .getAllMemberOfProject(req.query.project_id)
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };

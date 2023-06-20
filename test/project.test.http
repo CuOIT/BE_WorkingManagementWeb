@@ -79,6 +79,6 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 }
 
 ###
-GET http://localhost:8080/api/project?project_id=9
+GET http://localhost:8080/api/project/get-member?project_id=1
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
