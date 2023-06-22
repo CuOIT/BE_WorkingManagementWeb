@@ -1,6 +1,7 @@
-const token = require("./../Utils/token");
+const { verify } = require("jsonwebtoken");
+const token = require("../Utils/token");
 
-module.exports = authenToken = (req, res, next) => {
+module.exports = tokenVerify = (req, res, next) => {
     const authorizationHeader = req.headers["authorization"];
     if (!authorizationHeader) {
         return res.sendStatus(401);

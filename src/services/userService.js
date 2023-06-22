@@ -39,32 +39,48 @@ let handleLogin = async (email, password) => {
         return null;
     }
 };
-let createNewUSer = async (data) => {
-    let check = await checkEmailExist(data.email);
-    if (check === true) {
-        console.log(check);
-        return {
-            status: 400,
-            success: "false",
-            message: "Email has been used",
-        };
-    } else {
-        // let password = await hashPassword(data.password);
-        await db.User.create({
-            email: data.email,
-            last_name: data.last_name,
-            first_name: data.first_name,
-            user_name: data.user_name,
-            password: data.password,
-            phone: data.phone,
-            birthday: data.birthday,
-        });
-        return {
-            status: 201,
-            success: "true",
-            message: "Successfully created",
-        };
-    }
+let createNewUSer = (data) => {
+    console.log({ data });
+    return new Promise(async (resolve, reject) => {
+        try {
+            let check = await checkEmailExist(data.email);
+            if (check === true) {
+                reject({
+                    success: "false",
+                    message: "Your email's already existed",
+                });
+            } else {
+                // let password = await hashPassword(data.password);
+                db.User.create({
+                    email: data.email,
+                    last_name: data.last_name,
+                    first_name: data.first_name,
+                    user_name: data.user_name,
+                    password: data.user_password,
+                    phone: data.phone,
+                    birthday: data.birthday,
+                })
+                    .then((result) =>
+                        resolve({
+                            success: "true",
+                            message: "Create account successfully",
+                        })
+                    )
+                    .catch((error) => {
+                        console.log({ error });
+                        reject({
+                            success: "false",
+                            message: "Error occured",
+                        });
+                    });
+            }
+        } catch (error) {
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
+        }
+    });
 };
 
 let deleteUser = (id) => {

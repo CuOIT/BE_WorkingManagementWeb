@@ -3,11 +3,11 @@ const bodyParser = require("body-parser");
 const viewEngine = require("./config/viewEngine");
 const privateRouter = require("./routes/private/index");
 const publicRouter = require("./routes/public/index");
-const authenToken = require("./middleware/index");
 const connectDB = require("./config/connectDB");
 const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const tokenVerify = require("./middleware/tokenVerify");
 require("dotenv").config();
 
 let app = express();
@@ -24,7 +24,7 @@ app.use("/api", publicRouter);
 
 app.use(
     "/api",
-    //  authenToken,
+    // tokenVerify,
     privateRouter
 );
 

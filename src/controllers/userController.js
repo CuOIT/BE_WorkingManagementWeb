@@ -24,11 +24,16 @@ let handleRefreshToken = async (req, res) => {
     }
 };
 let handleCreateNewUser = async (req, res) => {
-    userService.createNewUSer(req.body).then((result) => {
-        res.status(201).json({
-            result,
+    userService
+        .createNewUSer(req.body)
+        .then((result) => {
+            res.status(201).json({
+                result,
+            });
+        })
+        .catch((error) => {
+            res.status(500).json(error);
         });
-    });
 };
 let handleUserLogin = async (req, res) => {
     try {
