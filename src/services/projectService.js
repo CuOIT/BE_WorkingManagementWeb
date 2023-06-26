@@ -311,7 +311,7 @@ const getAllMemberOfProject = (project_id) => {
         try {
             console.log(project_id);
             const members = await db.sequelize.query(
-                `SELECT user_name, role from ProjectMembers, Users WHERE member_id=user_id AND project_id= :project_id`,
+                `SELECT user_name,member_id, role from ProjectMembers, Users WHERE member_id=user_id AND project_id= :project_id`,
                 {
                     replacements: { project_id },
                     type: QueryTypes.SELECT,
