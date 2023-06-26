@@ -12,8 +12,8 @@ POST http://localhost:8080/api/user/signup
 Content-Type: application/json
 
 {
-    "email":"user2@gmail.com",
-    "password":"123",
+    "email":"user3@gmail.com",
+    "user_password":"123",
     "last_name":"Chung",
     "first_name":"12",
     "user_name":"CuO",
@@ -28,3 +28,8 @@ Content-Type: application/json
 {
     "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1MSwiaWF0IjoxNjg2ODk1Mjg5LCJleHAiOjE2ODk0ODcyODl9.p4REKacryJd42Pqg8dVjSzodi2sypITfnVBeT8auOU8"
 }
+
+###
+GET http://localhost:8080/api/user/find-user-by-user-name?user_name=Cu
+
+

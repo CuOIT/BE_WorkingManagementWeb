@@ -6,7 +6,8 @@ module.exports = (router) => {
     router.post("/project", projectController.handleCretateProject);
     router.get("/project", projectController.handleGetProjectbyId);
     router.put("/project/:id", projectController.handleUpdateProject);
-    router.delete("/project/:id", projectController.handleDeleteProject);
+    router.delete("/project/delete-project/:id", projectController.handleDeleteProject);
     router.post("/project/add-member", projectController.handleAddMember);
     router.get("/project/get-member", projectController.handleGetAllMemberOfProject);
+    router.delete("/project/delete-member", projectController.handleDeleteMemberOfProject);
 };

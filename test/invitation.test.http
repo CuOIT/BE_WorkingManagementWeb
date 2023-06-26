@@ -12,7 +12,7 @@ Content-Type: application/json
 GET http://localhost:8080/api/project/invite?receiver_id=2
 
 ###
-PUT http://localhost:8080/api/project/response-invitation/22
+PUT http://localhost:8080/api/project/response-invitation/1
  Content-Type: application/json
  
  {

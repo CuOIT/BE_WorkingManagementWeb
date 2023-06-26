@@ -34,10 +34,9 @@ const getAllInvitation = (user_id) => {
             resolve({
                 success: "true",
                 message: "Successfully",
-                data: { shortInvitations },
+                data: shortInvitations,
             });
         } catch (error) {
-            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",
@@ -79,45 +78,59 @@ const addInvitation = (data) => {
 
 const responseInvitation = (data) => {
     return new Promise(async (resolve, reject) => {
+        transaction = await db.sequelize.transaction();
         try {
             const invitation = await db.Invitation.findOne({
                 where: {
                     id: data.id,
                 },
             });
-
+            console.log({ invitation });
             if (invitation) {
                 if (data.response == "true") {
-                    console.log({ res: data.response });
-                    const newMember = await db.ProjectMember.create({
-                        member_id: invitation.receiver,
-                        project_id: invitation.project_id,
-                        role: "member",
-                    });
-                    if (newMember) {
-                        resolve({
-                            success: "true",
-                            message: "The receiver has agree the invitation",
-                        });
-                    }
-                } else if (data.response == false) {
-                    const result = await db.Invitation.destroy({
-                        where: {
-                            id: invitation.id,
+                    await db.ProjectMember.create(
+                        {
+                            member_id: invitation.receiver,
+                            project_id: invitation.project_id,
+                            role: "member",
                         },
+                        { transaction }
+                    );
+                    await db.Invitation.destroy(
+                        {
+                            where: {
+                                id: data.id,
+                            },
+                        },
+                        { transaction }
+                    );
+                    await transaction.commit();
+                    resolve({
+                        success: "true",
+                        message: "The receiver has agree the invitation",
                     });
-                    if (result)
+                } else {
+                    if (data.response === "false") {
+                        await db.Invitation.destroy({
+                            where: {
+                                id: invitation.id,
+                            },
+                        });
                         resolve({
                             success: "true",
                             message: "The receiver has decline the invitation",
                         });
+                    }
                 }
+            } else {
+                reject({
+                    success: "false",
+                    message: "Cannot find the invitation",
+                });
             }
-            reject({
-                success: "false",
-                message: "Error occured",
-            });
         } catch (error) {
+            transaction.rollback();
+            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",

@@ -61,6 +61,12 @@ let handleGetAllMemberOfProject = async (req, res) => {
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };
+let handleDeleteMemberOfProject = async (req, res) => {
+    projectService
+        .deleteMemberOfProject(req.body)
+        .then((result) => res.status(200).json(result))
+        .catch((error) => res.status(500).json(error));
+};
 
 module.exports = {
     handleAuthorizeAdmin,
@@ -71,4 +77,5 @@ module.exports = {
     handleDeleteProject,
     handleAddMember,
     handleGetAllMemberOfProject,
+    handleDeleteMemberOfProject,
 };

@@ -1,5 +1,5 @@
 const db = require("../models/index");
-
+const { Op } = require("sequelize");
 let checkEmailExist = async (email) => {
     let user = await db.User.findOne({
         where: {
@@ -9,16 +9,16 @@ let checkEmailExist = async (email) => {
     });
     return user ? true : false;
 };
-// let hashPassword = (password) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             let hashedPassword = await bcrypt.hashSync(password, salt);
-//             resolve(hashedPassword);
-//         } catch (error) {
-//             reject(error);
-//         }
-//     })
-// }
+let hashPassword = (password) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let hashedPassword = await bcrypt.hashSync(password, salt);
+            resolve(hashedPassword);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 let handleLogin = async (email, password) => {
     let checkUserExist = await checkEmailExist(email);
     if (checkUserExist) {
@@ -150,6 +150,7 @@ const findUserByUserName = (user_name) => {
     return new Promise(async (resolve, reject) => {
         try {
             const matches = await db.User.findAll({
+                attributes: ["user_id", "user_name"],
                 where: {
                     user_name: {
                         [Op.like]: `%${user_name}%`,
@@ -162,6 +163,7 @@ const findUserByUserName = (user_name) => {
                 data: matches,
             });
         } catch (error) {
+            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",

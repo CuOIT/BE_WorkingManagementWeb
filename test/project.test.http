@@ -52,7 +52,7 @@ Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYX
 
 ###delete-project
 
-DELETE http://localhost:8080/api/project/23
+DELETE http://localhost:8080/api/project/delete-project/23
 Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODU0NDM0MjgsImV4cCI6MTY4NTQ0NDAyOH0.CW5-3fMYGfDVBmH8mOJg23nVVpyHdyToOSNupQQK2Eo
 
@@ -74,8 +74,8 @@ Content-Type: application/json
 Authorization: Beaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2ODcwMDAxMDgsImV4cCI6MTY4NzAwMDcwOH0.v7QiNuzPFdtSa9VGF1CHpR63oTF5LtiyENqgYYHhxAw
 
 {
-    "project_id":900,
-    "member_id":30
+    "project_id":1,
+    "member_id":5
 }
 
 ###

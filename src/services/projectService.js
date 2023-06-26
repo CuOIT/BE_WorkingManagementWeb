@@ -333,6 +333,43 @@ const getAllMemberOfProject = (project_id) => {
     });
 };
 
+const deleteMemberOfProject = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { member_id, project_id } = data;
+            console.log({ member_id, project_id });
+            const member = await db.ProjectMember.findOne({
+                where: {
+                    member_id,
+                    project_id,
+                },
+            });
+            if (member) {
+                await db.ProjectMember.destroy({
+                    where: {
+                        member_id,
+                        project_id,
+                    },
+                });
+                resolve({
+                    success: "true",
+                    message: "Delete member successfully",
+                });
+            } else {
+                reject({
+                    success: "false",
+                    message: "Cannot find member in project",
+                });
+            }
+        } catch (error) {
+            console({ error });
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
+        }
+    });
+};
 module.exports = {
     authorizeAdmin,
     createProject,
@@ -342,4 +379,5 @@ module.exports = {
     leaveFromProject,
     addMember,
     getAllMemberOfProject,
+    deleteMemberOfProject,
 };
