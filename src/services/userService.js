@@ -29,7 +29,8 @@ let handleLogin = async (email, password) => {
             raw: true,
         });
         if (user) {
-            let checkPassword = password === user.password;
+            const hashPassword = await hashPassword(password);
+            let checkPassword = hashPassword === user.password;
             if (checkPassword) {
                 delete user.password;
                 return user;
@@ -50,7 +51,7 @@ let createNewUSer = (data) => {
                     message: "Your email's already existed",
                 });
             } else {
-                // let password = await hashPassword(data.password);
+                let password = await hashPassword(data.password);
                 db.User.create({
                     email: data.email,
                     last_name: data.last_name,
