@@ -362,7 +362,7 @@ const deleteMemberOfProject = (data) => {
                 });
             }
         } catch (error) {
-            console({ error });
+            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",

@@ -114,38 +114,43 @@ let deleteUser = (id) => {
     });
 };
 
-let editUserInfoByPhone = (data) => {
+const editUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findOne({
-                where: { phone: data.phone },
-                raw: false,
+            const user = await db.User.findOne({
+                where: {
+                    user_id: data.user_id,
+                },
             });
-
-            if (user) {
-                user.user_name = data.user_name;
-                user.email = data.email;
-                user.birthday = data.birthday;
-                user.gender = data.gender === 1 ? true : false;
-                user.cart = data.cart;
-
-                await user.save();
-
-                resolve({
-                    code: 0,
-                    message: "Successfully updated",
-                });
-            } else {
-                resolve({
-                    code: 2,
-                    message: "phone not found",
+            if (!user) {
+                reject({
+                    success: "false",
+                    message: "Cannot find the user",
                 });
             }
+            user.user_name = data.user_name;
+            user.email = data.email;
+            user.birthday = data.birthday;
+            user.last_name = data.last_name;
+            user.first_name = data.first_name;
+            user.gender = data.gender;
+            user.phone = data.phone;
+            user.avt = data.avt;
+            console.log({ user });
+            user.save();
+            resolve({
+                success: "true",
+                message: "Update user successfully",
+            });
         } catch (error) {
-            reject(error);
+            reject({
+                success: "false",
+                message: "Error occured",
+            });
         }
     });
 };
+
 const findUserByUserName = (user_name) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -176,4 +181,5 @@ module.exports = {
     createNewUSer: createNewUSer,
     findUserByUserName,
     handleLogin: handleLogin,
+    editUser,
 };

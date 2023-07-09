@@ -88,9 +88,19 @@ const handleFindUserByUserName = (req, res) => {
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };
+
+const handleEditUser = (req, res) => {
+    const preData = req.body;
+    const data = { ...preData, user_id: req.params.user_id };
+    userService
+        .editUser(data)
+        .then((result) => res.status(200).json(result))
+        .catch((error) => res.status(500).json(error));
+};
 module.exports = {
     handleCreateNewUser,
     handleUserLogin,
     handleRefreshToken,
     handleFindUserByUserName,
+    handleEditUser,
 };

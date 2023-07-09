@@ -63,7 +63,7 @@ let handleGetAllMemberOfProject = async (req, res) => {
 };
 let handleDeleteMemberOfProject = async (req, res) => {
     projectService
-        .deleteMemberOfProject(req.body)
+        .deleteMemberOfProject(req.query)
         .then((result) => res.status(200).json(result))
         .catch((error) => res.status(500).json(error));
 };

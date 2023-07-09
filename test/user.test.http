@@ -18,7 +18,7 @@ Content-Type: application/json
     "first_name":"12",
     "user_name":"CuO",
     "phone":"0366721011",
-    "birthday":"07-08-2002"
+    "birthday":"2002-07-08"
 }
 
 ### 
@@ -32,4 +32,18 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/user/find-user-by-user-name?user_name=Cu
 
+###
+PUT http://localhost:8080/api/user/update/51
+Content-Type: application/json
+
+{
+     "email":"cuosd@gmail.com",
+     "avt":"null",
+    "last_name":"Chung",
+    "first_name":"12",
+    "user_name":"CuO",
+    "phone":"0366721011",
+    "birthday":"2002-07-08",
+    "gender":0
+}
 
