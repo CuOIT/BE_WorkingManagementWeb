@@ -38,12 +38,35 @@ const hashPassword = (password) => {
         // }
     });
 };
+
+const hashPasswordB = (password) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const saltRound = 1;
+            const salt = await bcrypt.genSalt(saltRound);
+            console.log({ password, salt });
+            bcrypt.hash(password, salt, (error, hash) => {
+                console.log("HASHED");
+                if (error) {
+                    console.log({ error });
+                    reject({ error });
+                } else {
+                    console.log({ hash });
+                    resolve(hash);
+                }
+            });
+            // console.log({ hashedPassword });
+            // resolve(hashedPassword
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 const compareHashPassword = async (hashPassword, password) => {
     try {
-        const passwordMatch = await argon2.verify(hashPassword, password);
-        return passwordMatch;
+        const match = await bcrypt.compare(password, hashPassword);
+        return match;
     } catch (error) {
-        // Handle any errors that occurred during password verification
         return false;
     }
 };
@@ -57,8 +80,9 @@ let handleLogin = async (email, password) => {
             raw: true,
         });
         if (user) {
-            const hashPass = await hashPassword(password);
-            let compared = await compareHashPassword(hashPass, password);
+            console.log({ x: user.password, password });
+            let compared = await compareHashPassword(user.password, password);
+            console.log({ compared });
             if (compared) {
                 delete user.password;
                 return user;
@@ -80,7 +104,7 @@ let createNewUSer = (data) => {
                 });
             } else {
                 console.log({ in: data.user_password });
-                let password = await hashPassword(data.user_password);
+                let password = await hashPasswordB(data.user_password);
                 console.log({ password });
                 db.User.create({
                     email: data.email,
