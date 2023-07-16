@@ -46,6 +46,7 @@ let handleUserLogin = async (req, res) => {
             });
         }
         let userWithPassword = await userService.handleLogin(email, password);
+        console.log({ userWithPassword });
         if (userWithPassword) {
             const user_id = userWithPassword.user_id;
             const accessToken = token.generateAccessToken({ user_id });

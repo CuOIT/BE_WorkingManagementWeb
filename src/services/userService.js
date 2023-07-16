@@ -1,5 +1,7 @@
 const db = require("../models/index");
 const { Op } = require("sequelize");
+const bcrypt = require("bcrypt");
+const argon2 = require("argon2");
 let checkEmailExist = async (email) => {
     let user = await db.User.findOne({
         where: {
@@ -9,15 +11,41 @@ let checkEmailExist = async (email) => {
     });
     return user ? true : false;
 };
-let hashPassword = (password) => {
+const hashPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let hashedPassword = await bcrypt.hashSync(password, salt);
+            const hashedPassword = await argon2.hash(password);
             resolve(hashedPassword);
         } catch (error) {
-            reject(error);
+            reject({ error });
         }
+        // try {
+        //     console.log({ password, salt });
+        //     bcrypt.hash(password, salt, (error, hash) => {
+        //         console.log("HASHED");
+        //         if (error) {
+        //             console.log({ error });
+        //             reject({ error });
+        //         } else {
+        //             console.log({ hash });
+        //             resolve({ hash });
+        //         }
+        //     });
+        //     // console.log({ hashedPassword });
+        //     // resolve(hashedPassword
+        // } catch (error) {
+        //     reject(error);
+        // }
     });
+};
+const compareHashPassword = async (hashPassword, password) => {
+    try {
+        const passwordMatch = await argon2.verify(hashPassword, password);
+        return passwordMatch;
+    } catch (error) {
+        // Handle any errors that occurred during password verification
+        return false;
+    }
 };
 let handleLogin = async (email, password) => {
     let checkUserExist = await checkEmailExist(email);
@@ -29,9 +57,9 @@ let handleLogin = async (email, password) => {
             raw: true,
         });
         if (user) {
-            const hashPassword = await hashPassword(password);
-            let checkPassword = hashPassword === user.password;
-            if (checkPassword) {
+            const hashPass = await hashPassword(password);
+            let compared = await compareHashPassword(hashPass, password);
+            if (compared) {
                 delete user.password;
                 return user;
             }
@@ -51,13 +79,15 @@ let createNewUSer = (data) => {
                     message: "Your email's already existed",
                 });
             } else {
-                let password = await hashPassword(data.password);
+                console.log({ in: data.user_password });
+                let password = await hashPassword(data.user_password);
+                console.log({ password });
                 db.User.create({
                     email: data.email,
                     last_name: data.last_name,
                     first_name: data.first_name,
                     user_name: data.user_name,
-                    password: data.user_password,
+                    password,
                     phone: data.phone,
                     birthday: data.birthday,
                 })
@@ -76,6 +106,7 @@ let createNewUSer = (data) => {
                     });
             }
         } catch (error) {
+            console.log({ error });
             reject({
                 success: "false",
                 message: "Error occured",
